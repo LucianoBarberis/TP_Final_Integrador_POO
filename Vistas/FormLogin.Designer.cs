@@ -22,13 +22,13 @@
             lblAppTitle = new Label();
             lblAppSubtitle = new Label();
             pnlRight = new Panel();
-            lblLoginTitle = new Label();
+            panel2 = new Panel();
             lblUser = new Label();
             txtUser = new TextBox();
             lblPass = new Label();
             txtPass = new TextBox();
             btnLogin = new Button();
-            panel2 = new Panel();
+            lblLoginTitle = new Label();
             pnlLeft.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -101,16 +101,18 @@
             pnlRight.Size = new Size(550, 550);
             pnlRight.TabIndex = 1;
             // 
-            // lblLoginTitle
+            // panel2
             // 
-            lblLoginTitle.AutoSize = true;
-            lblLoginTitle.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblLoginTitle.ForeColor = Color.FromArgb(44, 62, 80);
-            lblLoginTitle.Location = new Point(136, 88);
-            lblLoginTitle.Name = "lblLoginTitle";
-            lblLoginTitle.Size = new Size(271, 54);
-            lblLoginTitle.TabIndex = 0;
-            lblLoginTitle.Text = "Iniciar Sesión";
+            panel2.BackColor = SystemColors.Control;
+            panel2.Controls.Add(lblUser);
+            panel2.Controls.Add(txtUser);
+            panel2.Controls.Add(lblPass);
+            panel2.Controls.Add(txtPass);
+            panel2.Controls.Add(btnLogin);
+            panel2.Location = new Point(83, 164);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(382, 259);
+            panel2.TabIndex = 6;
             // 
             // lblUser
             // 
@@ -173,18 +175,16 @@
             btnLogin.UseVisualStyleBackColor = false;
             btnLogin.Click += btnLogin_Click;
             // 
-            // panel2
+            // lblLoginTitle
             // 
-            panel2.BackColor = SystemColors.Control;
-            panel2.Controls.Add(lblUser);
-            panel2.Controls.Add(txtUser);
-            panel2.Controls.Add(lblPass);
-            panel2.Controls.Add(txtPass);
-            panel2.Controls.Add(btnLogin);
-            panel2.Location = new Point(83, 164);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(382, 259);
-            panel2.TabIndex = 6;
+            lblLoginTitle.AutoSize = true;
+            lblLoginTitle.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblLoginTitle.ForeColor = Color.FromArgb(44, 62, 80);
+            lblLoginTitle.Location = new Point(136, 88);
+            lblLoginTitle.Name = "lblLoginTitle";
+            lblLoginTitle.Size = new Size(271, 54);
+            lblLoginTitle.TabIndex = 0;
+            lblLoginTitle.Text = "Iniciar Sesión";
             // 
             // Login
             // 
@@ -195,7 +195,10 @@
             Controls.Add(pnlRight);
             Controls.Add(pnlLeft);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
+            MaximumSize = new Size(918, 597);
+            MinimumSize = new Size(918, 597);
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gestor de Reservas - Iniciar Sesión";

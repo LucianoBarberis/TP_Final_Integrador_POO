@@ -34,7 +34,11 @@ namespace Tp_Integrador_Final
 
             if (user == HardcodedUser && pass == HardcodedPass)
             {
-                new FormMenuPrincipal().Show();
+                new FormMenuPrincipal().ShowDialog();
+                user = string.Empty;
+                pass = string.Empty;
+                txtUser.Text = string.Empty;
+                txtPass.Text = string.Empty;
             }
             else
             {

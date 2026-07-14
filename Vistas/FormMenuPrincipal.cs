@@ -14,5 +14,10 @@ namespace Tp_Integrador_Final.Vistas
         {
             InitializeComponent();
         }
+
+        private void cerrarSesiónToolStripMenuItem_DoubleClick(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

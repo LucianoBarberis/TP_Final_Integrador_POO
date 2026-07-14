@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMenuPrincipal));
             menuStrip1 = new MenuStrip();
             menuAdministradorToolStripMenuItem = new ToolStripMenuItem();
             gestiónDeUsuariosToolStripMenuItem = new ToolStripMenuItem();
@@ -37,6 +38,7 @@
             reportesToolStripMenuItem = new ToolStripMenuItem();
             gerenteToolStripMenuItem = new ToolStripMenuItem();
             reportesToolStripMenuItem1 = new ToolStripMenuItem();
+            cerrarSesiónToolStripMenuItem = new ToolStripMenuItem();
             btnNewReserva = new Button();
             dgvReservas = new DataGridView();
             lblTitle = new Label();
@@ -57,6 +59,7 @@
             button1 = new Button();
             label7 = new Label();
             panel2 = new Panel();
+            dobleClickToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvReservas).BeginInit();
             panel1.SuspendLayout();
@@ -66,7 +69,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { menuAdministradorToolStripMenuItem, gerenteToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { menuAdministradorToolStripMenuItem, gerenteToolStripMenuItem, cerrarSesiónToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1029, 28);
@@ -84,7 +87,7 @@
             // 
             gestiónDeUsuariosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { usuariosToolStripMenuItem, salasDeReunionesToolStripMenuItem, reservasToolStripMenuItem1 });
             gestiónDeUsuariosToolStripMenuItem.Name = "gestiónDeUsuariosToolStripMenuItem";
-            gestiónDeUsuariosToolStripMenuItem.Size = new Size(224, 26);
+            gestiónDeUsuariosToolStripMenuItem.Size = new Size(151, 26);
             gestiónDeUsuariosToolStripMenuItem.Text = "Gestión";
             // 
             // usuariosToolStripMenuItem
@@ -108,7 +111,7 @@
             // reportesToolStripMenuItem
             // 
             reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
-            reportesToolStripMenuItem.Size = new Size(224, 26);
+            reportesToolStripMenuItem.Size = new Size(151, 26);
             reportesToolStripMenuItem.Text = "Reportes";
             // 
             // gerenteToolStripMenuItem
@@ -124,6 +127,15 @@
             reportesToolStripMenuItem1.Size = new Size(151, 26);
             reportesToolStripMenuItem1.Text = "Reportes";
             // 
+            // cerrarSesiónToolStripMenuItem
+            // 
+            cerrarSesiónToolStripMenuItem.DoubleClickEnabled = true;
+            cerrarSesiónToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dobleClickToolStripMenuItem });
+            cerrarSesiónToolStripMenuItem.Name = "cerrarSesiónToolStripMenuItem";
+            cerrarSesiónToolStripMenuItem.Size = new Size(110, 24);
+            cerrarSesiónToolStripMenuItem.Text = "Cerrar Sesión";
+            cerrarSesiónToolStripMenuItem.DoubleClick += cerrarSesiónToolStripMenuItem_DoubleClick;
+            // 
             // btnNewReserva
             // 
             btnNewReserva.BackColor = Color.FromArgb(119, 38, 55);
@@ -135,7 +147,7 @@
             btnNewReserva.Location = new Point(7, 223);
             btnNewReserva.Name = "btnNewReserva";
             btnNewReserva.Size = new Size(302, 48);
-            btnNewReserva.TabIndex = 10;
+            btnNewReserva.TabIndex = 4;
             btnNewReserva.Text = "Reservar Sala";
             btnNewReserva.UseVisualStyleBackColor = false;
             // 
@@ -223,7 +235,7 @@
             txtUser.Location = new Point(7, 164);
             txtUser.Name = "txtUser";
             txtUser.Size = new Size(302, 27);
-            txtUser.TabIndex = 18;
+            txtUser.TabIndex = 3;
             // 
             // panel1
             // 
@@ -262,7 +274,7 @@
             comboBox1.Location = new Point(7, 34);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(302, 28);
-            comboBox1.TabIndex = 23;
+            comboBox1.TabIndex = 0;
             // 
             // label4
             // 
@@ -296,7 +308,7 @@
             dtpInitDate.Name = "dtpInitDate";
             dtpInitDate.ShowUpDown = true;
             dtpInitDate.Size = new Size(144, 27);
-            dtpInitDate.TabIndex = 20;
+            dtpInitDate.TabIndex = 1;
             // 
             // dtpEndDate
             // 
@@ -308,7 +320,7 @@
             dtpEndDate.Name = "dtpEndDate";
             dtpEndDate.ShowUpDown = true;
             dtpEndDate.Size = new Size(142, 27);
-            dtpEndDate.TabIndex = 19;
+            dtpEndDate.TabIndex = 2;
             // 
             // label6
             // 
@@ -332,7 +344,7 @@
             button1.Location = new Point(19, 520);
             button1.Name = "button1";
             button1.Size = new Size(302, 31);
-            button1.TabIndex = 25;
+            button1.TabIndex = 5;
             button1.Text = "Cancelar Reserva Seleccionada";
             button1.UseVisualStyleBackColor = false;
             // 
@@ -360,6 +372,12 @@
             panel2.Size = new Size(319, 128);
             panel2.TabIndex = 27;
             // 
+            // dobleClickToolStripMenuItem
+            // 
+            dobleClickToolStripMenuItem.Name = "dobleClickToolStripMenuItem";
+            dobleClickToolStripMenuItem.Size = new Size(224, 26);
+            dobleClickToolStripMenuItem.Text = "(Doble Click)";
+            // 
             // FormMenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -373,10 +391,13 @@
             Controls.Add(panel1);
             Controls.Add(dgvReservas);
             Controls.Add(menuStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
+            MaximumSize = new Size(1047, 613);
+            MinimumSize = new Size(1047, 613);
             Name = "FormMenuPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FormMenuPrincipal";
+            Text = "Gestor de Reservas - Menú Principal";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvReservas).EndInit();
@@ -419,5 +440,7 @@
         private Button button1;
         private Label label7;
         private Panel panel2;
+        private ToolStripMenuItem cerrarSesiónToolStripMenuItem;
+        private ToolStripMenuItem dobleClickToolStripMenuItem;
     }
 }
