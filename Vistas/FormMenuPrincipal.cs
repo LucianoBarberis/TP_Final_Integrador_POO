@@ -19,5 +19,10 @@ namespace Tp_Integrador_Final.Vistas
         {
             this.Close();
         }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FormGestionDeUsuarios().ShowDialog();
+        }
     }
 }

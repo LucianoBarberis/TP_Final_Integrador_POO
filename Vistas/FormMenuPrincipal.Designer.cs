@@ -34,11 +34,11 @@
             gestiónDeUsuariosToolStripMenuItem = new ToolStripMenuItem();
             usuariosToolStripMenuItem = new ToolStripMenuItem();
             salasDeReunionesToolStripMenuItem = new ToolStripMenuItem();
-            reservasToolStripMenuItem1 = new ToolStripMenuItem();
             reportesToolStripMenuItem = new ToolStripMenuItem();
             gerenteToolStripMenuItem = new ToolStripMenuItem();
             reportesToolStripMenuItem1 = new ToolStripMenuItem();
             cerrarSesiónToolStripMenuItem = new ToolStripMenuItem();
+            dobleClickToolStripMenuItem = new ToolStripMenuItem();
             btnNewReserva = new Button();
             dgvReservas = new DataGridView();
             lblTitle = new Label();
@@ -59,7 +59,6 @@
             button1 = new Button();
             label7 = new Label();
             panel2 = new Panel();
-            dobleClickToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvReservas).BeginInit();
             panel1.SuspendLayout();
@@ -85,33 +84,28 @@
             // 
             // gestiónDeUsuariosToolStripMenuItem
             // 
-            gestiónDeUsuariosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { usuariosToolStripMenuItem, salasDeReunionesToolStripMenuItem, reservasToolStripMenuItem1 });
+            gestiónDeUsuariosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { usuariosToolStripMenuItem, salasDeReunionesToolStripMenuItem });
             gestiónDeUsuariosToolStripMenuItem.Name = "gestiónDeUsuariosToolStripMenuItem";
-            gestiónDeUsuariosToolStripMenuItem.Size = new Size(151, 26);
+            gestiónDeUsuariosToolStripMenuItem.Size = new Size(224, 26);
             gestiónDeUsuariosToolStripMenuItem.Text = "Gestión";
             // 
             // usuariosToolStripMenuItem
             // 
             usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            usuariosToolStripMenuItem.Size = new Size(215, 26);
+            usuariosToolStripMenuItem.Size = new Size(224, 26);
             usuariosToolStripMenuItem.Text = "Usuarios";
+            usuariosToolStripMenuItem.Click += usuariosToolStripMenuItem_Click;
             // 
             // salasDeReunionesToolStripMenuItem
             // 
             salasDeReunionesToolStripMenuItem.Name = "salasDeReunionesToolStripMenuItem";
-            salasDeReunionesToolStripMenuItem.Size = new Size(215, 26);
+            salasDeReunionesToolStripMenuItem.Size = new Size(224, 26);
             salasDeReunionesToolStripMenuItem.Text = "Salas de reuniones";
-            // 
-            // reservasToolStripMenuItem1
-            // 
-            reservasToolStripMenuItem1.Name = "reservasToolStripMenuItem1";
-            reservasToolStripMenuItem1.Size = new Size(215, 26);
-            reservasToolStripMenuItem1.Text = "Reservas";
             // 
             // reportesToolStripMenuItem
             // 
             reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
-            reportesToolStripMenuItem.Size = new Size(151, 26);
+            reportesToolStripMenuItem.Size = new Size(224, 26);
             reportesToolStripMenuItem.Text = "Reportes";
             // 
             // gerenteToolStripMenuItem
@@ -135,6 +129,12 @@
             cerrarSesiónToolStripMenuItem.Size = new Size(110, 24);
             cerrarSesiónToolStripMenuItem.Text = "Cerrar Sesión";
             cerrarSesiónToolStripMenuItem.DoubleClick += cerrarSesiónToolStripMenuItem_DoubleClick;
+            // 
+            // dobleClickToolStripMenuItem
+            // 
+            dobleClickToolStripMenuItem.Name = "dobleClickToolStripMenuItem";
+            dobleClickToolStripMenuItem.Size = new Size(178, 26);
+            dobleClickToolStripMenuItem.Text = "(Doble Click)";
             // 
             // btnNewReserva
             // 
@@ -372,12 +372,6 @@
             panel2.Size = new Size(319, 128);
             panel2.TabIndex = 27;
             // 
-            // dobleClickToolStripMenuItem
-            // 
-            dobleClickToolStripMenuItem.Name = "dobleClickToolStripMenuItem";
-            dobleClickToolStripMenuItem.Size = new Size(224, 26);
-            dobleClickToolStripMenuItem.Text = "(Doble Click)";
-            // 
             // FormMenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -416,7 +410,6 @@
         private ToolStripMenuItem gestiónDeUsuariosToolStripMenuItem;
         private ToolStripMenuItem usuariosToolStripMenuItem;
         private ToolStripMenuItem salasDeReunionesToolStripMenuItem;
-        private ToolStripMenuItem reservasToolStripMenuItem1;
         private ToolStripMenuItem reportesToolStripMenuItem;
         private ToolStripMenuItem gerenteToolStripMenuItem;
         private ToolStripMenuItem reportesToolStripMenuItem1;
