@@ -40,15 +40,15 @@
             label5 = new Label();
             cbRol = new ComboBox();
             lblName = new Label();
-            txtUser = new TextBox();
+            tbName = new TextBox();
             btnNewUser = new Button();
-            dgvReservas = new DataGridView();
+            dgvUsers = new DataGridView();
             cbFilterGerente = new CheckBox();
             cbFilterEmp = new CheckBox();
             cbFilterAdmin = new CheckBox();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvReservas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvUsers).BeginInit();
             SuspendLayout();
             // 
             // panel2
@@ -101,7 +101,7 @@
             panel1.Controls.Add(label5);
             panel1.Controls.Add(cbRol);
             panel1.Controls.Add(lblName);
-            panel1.Controls.Add(txtUser);
+            panel1.Controls.Add(tbName);
             panel1.Controls.Add(btnNewUser);
             panel1.Location = new Point(7, 176);
             panel1.Name = "panel1";
@@ -165,6 +165,7 @@
             cbRol.Name = "cbRol";
             cbRol.Size = new Size(302, 28);
             cbRol.TabIndex = 0;
+            cbRol.ValueMember = "0";
             // 
             // lblName
             // 
@@ -177,16 +178,16 @@
             lblName.TabIndex = 17;
             lblName.Text = "Nombre";
             // 
-            // txtUser
+            // tbName
             // 
-            txtUser.BackColor = Color.White;
-            txtUser.BorderStyle = BorderStyle.None;
-            txtUser.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtUser.ForeColor = Color.FromArgb(44, 62, 80);
-            txtUser.Location = new Point(7, 108);
-            txtUser.Name = "txtUser";
-            txtUser.Size = new Size(302, 27);
-            txtUser.TabIndex = 3;
+            tbName.BackColor = Color.White;
+            tbName.BorderStyle = BorderStyle.None;
+            tbName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tbName.ForeColor = Color.FromArgb(44, 62, 80);
+            tbName.Location = new Point(7, 108);
+            tbName.Name = "tbName";
+            tbName.Size = new Size(302, 27);
+            tbName.TabIndex = 3;
             // 
             // btnNewUser
             // 
@@ -202,15 +203,27 @@
             btnNewUser.TabIndex = 6;
             btnNewUser.Text = "Crear Usuario";
             btnNewUser.UseVisualStyleBackColor = false;
+            btnNewUser.Click += btnNewUser_Click;
             // 
-            // dgvReservas
+            // dgvUsers
             // 
-            dgvReservas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvReservas.Location = new Point(343, 33);
-            dgvReservas.Name = "dgvReservas";
-            dgvReservas.RowHeadersWidth = 51;
-            dgvReservas.Size = new Size(665, 521);
-            dgvReservas.TabIndex = 29;
+            dgvUsers.AllowUserToAddRows = false;
+            dgvUsers.AllowUserToDeleteRows = false;
+            dgvUsers.AllowUserToResizeColumns = false;
+            dgvUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvUsers.BackgroundColor = SystemColors.Control;
+            dgvUsers.BorderStyle = BorderStyle.None;
+            dgvUsers.CellBorderStyle = DataGridViewCellBorderStyle.SunkenHorizontal;
+            dgvUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvUsers.Location = new Point(343, 33);
+            dgvUsers.MultiSelect = false;
+            dgvUsers.Name = "dgvUsers";
+            dgvUsers.ReadOnly = true;
+            dgvUsers.RowHeadersVisible = false;
+            dgvUsers.RowHeadersWidth = 51;
+            dgvUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvUsers.Size = new Size(665, 521);
+            dgvUsers.TabIndex = 29;
             // 
             // cbFilterGerente
             // 
@@ -255,7 +268,7 @@
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(panel1);
-            Controls.Add(dgvReservas);
+            Controls.Add(dgvUsers);
             ForeColor = Color.FromArgb(100, 100, 120);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximumSize = new Size(1047, 613);
@@ -266,7 +279,7 @@
             panel2.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvReservas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvUsers).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -281,9 +294,9 @@
         private Label label5;
         private ComboBox cbRol;
         private Label lblName;
-        private TextBox txtUser;
+        private TextBox tbName;
         private Button btnNewUser;
-        private DataGridView dgvReservas;
+        private DataGridView dgvUsers;
         private CheckBox cbShowPass;
         private Label label1;
         private TextBox tbPass;
