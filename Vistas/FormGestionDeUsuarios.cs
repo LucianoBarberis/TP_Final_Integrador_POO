@@ -16,7 +16,7 @@ namespace Tp_Integrador_Final.Vistas
         {
             InitializeComponent();
             ConfigurarDataGridView();
-            dgvUsers.DataSource = usuariosBindingList;
+            RefrescarDGV();
             cbRol.SelectedIndex = 2;
         }
         private void ConfigurarDataGridView()
@@ -33,7 +33,7 @@ namespace Tp_Integrador_Final.Vistas
             dgvUsers.RowHeadersVisible = false;
 
             dgvUsers.BackgroundColor = Color.GhostWhite;
-            dgvUsers.BorderStyle = BorderStyle.FixedSingle  ;
+            dgvUsers.BorderStyle = BorderStyle.FixedSingle;
             dgvUsers.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvUsers.GridColor = Color.FromArgb(230, 230, 235);
 
@@ -67,6 +67,7 @@ namespace Tp_Integrador_Final.Vistas
             colPass.DataPropertyName = "Password";
             colPass.HeaderText = "Contraseña";
             colPass.Visible = false;
+            colPass.FillWeight = 15;
             dgvUsers.Columns.Add(colPass);
 
             DataGridViewTextBoxColumn colTotal = new DataGridViewTextBoxColumn();
@@ -87,7 +88,14 @@ namespace Tp_Integrador_Final.Vistas
 
             dgvUsers.Columns.Add(colUltima);
         }
-        private BindingList<Usuario> usuariosBindingList = new BindingList<Usuario>(GestorDeDatos.RepositorioUsuarios.Listar());
+        private void RefrescarDGV()
+        {
+            usuariosBindingList = new BindingList<Usuario>(
+                GestorDeDatos.RepositorioUsuarios.Listar());
+            dgvUsers.DataSource = null;
+            dgvUsers.DataSource = usuariosBindingList;
+        }
+        private BindingList<Usuario> usuariosBindingList;
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (cbShowPass.Checked)
@@ -104,7 +112,6 @@ namespace Tp_Integrador_Final.Vistas
         {
             string name = tbName.Text.Trim();
             string password = tbPass.Text.Trim();
-            RolesEnum rol = (RolesEnum)cbRol.SelectedIndex;
             Usuario newUser;
 
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(password))
@@ -113,21 +120,58 @@ namespace Tp_Integrador_Final.Vistas
                 return;
             }
 
-            if (rol == RolesEnum.Admin)
+            switch (cbRol.SelectedIndex)
             {
-                newUser = new Administrador();
-                
-            }
-            if (rol == RolesEnum.Gerente)
-            {
-                newUser = new Gerente();
-               
-            }
-            if (rol == RolesEnum.Empleado)
-            {
-                newUser = new Empleado();
+                case 0:
+                    newUser = new Administrador();
+                    break;
+                case 1:
+                    newUser = new Gerente();
+                    break;
+                case 2:
+                    newUser = new Empleado();
+                    break;
+                default:
+                    MessageBox.Show($"Por favor, seleccione un rol válido. {cbRol.SelectedIndex}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
             }
 
+            newUser.Name = name;
+            newUser.Password = password;
+            GestorDeDatos.RepositorioUsuarios.Agregar(newUser);
+            RefrescarDGV();
+            tbName.Clear();
+            tbPass.Clear();
+            MessageBox.Show("Usuario agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnEditUser_Click(object sender, EventArgs e)
+        {
+            Usuario userSelected;
+            switch (cbRol.SelectedIndex)
+            {
+                case 0:
+                    userSelected = new Administrador();
+                    break;
+                case 1:
+                    userSelected = new Gerente();
+                    break;
+                case 2:
+                    userSelected = new Empleado();
+                    break;
+            }
+            int id = (int)dgvUsers.SelectedRows[0].Cells[0].Value;
+            userSelected = GestorDeDatos.RepositorioUsuarios.Obtener(id);
+            var formEditUser = new FormEditUser(userSelected);
+            if (formEditUser.ShowDialog() == DialogResult.OK)
+            {
+                RefrescarDGV();
+            }
+            else
+            {
+                MessageBox.Show("Se cancelo la operación.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            RefrescarDGV();
         }
     }
 }

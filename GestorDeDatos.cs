@@ -17,7 +17,7 @@ namespace Tp_Integrador_Final
                 //Nombre de la DB
                 "usuariosDB",
                 //Serialización
-                usuario => $"{usuario.Id}|{(int)usuario.Rol}|{usuario.Name}|{usuario.Password}|{usuario.TotalReservasSemana}|{usuario.UltimaReserva?.ToString("yyyy-MM-dd") ?? ""}",
+                usuario => usuario.ToString(),
                 //Deserialización
                 linea =>
                 {

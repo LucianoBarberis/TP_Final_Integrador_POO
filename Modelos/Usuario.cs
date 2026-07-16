@@ -21,5 +21,10 @@ namespace Tp_Integrador_Final.Modelos
         public string Password { get => password; set => password = value; }
         public int TotalReservasSemana { get => totalReservasSemana; set => totalReservasSemana = value; }
         public DateTime? UltimaReserva { get => ultimaReserva; set => ultimaReserva = value; }
+
+        public override string ToString()
+        {
+            return $"{Id}|{(int)Rol}|{Name}|{Password}|{TotalReservasSemana}|{UltimaReserva?.ToString("yyyy-MM-dd") ?? ""}";
+        }
     }
 }
