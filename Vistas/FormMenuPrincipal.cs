@@ -13,6 +13,26 @@ namespace Tp_Integrador_Final.Vistas
         public FormMenuPrincipal()
         {
             InitializeComponent();
+            if(GestorDeDatos.usuarioLogeado.Rol == Enums.RolesEnum.Admin)
+            {
+                menuAdministradorToolStripMenuItem.Visible = true;
+            }
+            else
+            {
+                menuAdministradorToolStripMenuItem.Visible = false;
+            }
+
+            if(GestorDeDatos.usuarioLogeado.Rol == Enums.RolesEnum.Gerente)
+            {
+                gerenteToolStripMenuItem.Visible = true;
+            }
+            else
+            {
+                gerenteToolStripMenuItem.Visible = false;
+            }
+
+            lblUserName.Text = GestorDeDatos.usuarioLogeado.Name;
+            lblRol.Text = GestorDeDatos.usuarioLogeado.Rol.ToString();
         }
 
         private void cerrarSesiónToolStripMenuItem_DoubleClick(object sender, EventArgs e)

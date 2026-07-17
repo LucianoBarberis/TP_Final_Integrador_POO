@@ -92,6 +92,25 @@ namespace Tp_Integrador_Final.Vistas
         {
             usuariosBindingList = new BindingList<Usuario>(
                 GestorDeDatos.RepositorioUsuarios.Listar());
+
+            if (cbFilterAdmin.Checked == false)
+            {
+                usuariosBindingList = new BindingList<Usuario>(
+                    usuariosBindingList.Where(u => u.Rol != RolesEnum.Admin).ToList());
+            }
+
+            if (cbFilterGerente.Checked == false)
+            {
+                usuariosBindingList = new BindingList<Usuario>(
+                    usuariosBindingList.Where(u => u.Rol != RolesEnum.Gerente).ToList());
+            }
+
+            if (cbFilterEmp.Checked == false)
+            {
+                usuariosBindingList = new BindingList<Usuario>(
+                    usuariosBindingList.Where(u => u.Rol != RolesEnum.Empleado).ToList());
+            }
+
             dgvUsers.DataSource = null;
             dgvUsers.DataSource = usuariosBindingList;
         }
@@ -171,6 +190,21 @@ namespace Tp_Integrador_Final.Vistas
             {
                 MessageBox.Show("Se cancelo la operación.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            RefrescarDGV();
+        }
+
+        private void cbFilterGerente_CheckedChanged(object sender, EventArgs e)
+        {
+            RefrescarDGV();
+        }
+
+        private void cbFilterEmp_CheckedChanged(object sender, EventArgs e)
+        {
+            RefrescarDGV();
+        }
+
+        private void cbFilterAdmin_CheckedChanged(object sender, EventArgs e)
+        {
             RefrescarDGV();
         }
     }

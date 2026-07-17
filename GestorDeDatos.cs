@@ -9,6 +9,7 @@ namespace Tp_Integrador_Final
 {
     public static class GestorDeDatos
     {
+        public static Usuario usuarioLogeado { get; set; }
         public static RepositorioArchivo<Usuario> RepositorioUsuarios { get; private set; }
 
         public static void Inicializar()

@@ -230,32 +230,41 @@
             // cbFilterGerente
             // 
             cbFilterGerente.AutoSize = true;
+            cbFilterGerente.Checked = true;
+            cbFilterGerente.CheckState = CheckState.Checked;
             cbFilterGerente.Location = new Point(733, 6);
             cbFilterGerente.Name = "cbFilterGerente";
             cbFilterGerente.Size = new Size(83, 24);
             cbFilterGerente.TabIndex = 7;
             cbFilterGerente.Text = "Gerente";
             cbFilterGerente.UseVisualStyleBackColor = true;
+            cbFilterGerente.CheckedChanged += cbFilterGerente_CheckedChanged;
             // 
             // cbFilterEmp
             // 
             cbFilterEmp.AutoSize = true;
+            cbFilterEmp.Checked = true;
+            cbFilterEmp.CheckState = CheckState.Checked;
             cbFilterEmp.Location = new Point(822, 6);
             cbFilterEmp.Name = "cbFilterEmp";
             cbFilterEmp.Size = new Size(105, 24);
             cbFilterEmp.TabIndex = 8;
             cbFilterEmp.Text = "Empleados";
             cbFilterEmp.UseVisualStyleBackColor = true;
+            cbFilterEmp.CheckedChanged += cbFilterEmp_CheckedChanged;
             // 
             // cbFilterAdmin
             // 
             cbFilterAdmin.AutoSize = true;
+            cbFilterAdmin.Checked = true;
+            cbFilterAdmin.CheckState = CheckState.Checked;
             cbFilterAdmin.Location = new Point(933, 6);
             cbFilterAdmin.Name = "cbFilterAdmin";
             cbFilterAdmin.Size = new Size(75, 24);
             cbFilterAdmin.TabIndex = 9;
             cbFilterAdmin.Text = "Admin";
             cbFilterAdmin.UseVisualStyleBackColor = true;
+            cbFilterAdmin.CheckedChanged += cbFilterAdmin_CheckedChanged;
             // 
             // btnEditUser
             // 
