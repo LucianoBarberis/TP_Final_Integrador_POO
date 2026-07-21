@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using Tp_Integrador_Final.Enums;
@@ -21,6 +20,13 @@ namespace Tp_Integrador_Final.Modelos
         public string Password { get => password; set => password = value; }
         public int TotalReservasSemana { get => totalReservasSemana; set => totalReservasSemana = value; }
         public DateTime? UltimaReserva { get => ultimaReserva; set => ultimaReserva = value; }
+
+        public abstract int ObtenerLimiteReservasSemanales();
+
+        public virtual bool PuedeCancelar(Reserva reserva)
+        {
+            return reserva.UsuarioId == Id;
+        }
 
         public override string ToString()
         {

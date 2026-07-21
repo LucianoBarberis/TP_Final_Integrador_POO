@@ -1,10 +1,17 @@
-﻿namespace Tp_Integrador_Final.Modelos
+﻿using Tp_Integrador_Final.Enums;
+
+namespace Tp_Integrador_Final.Modelos
 {
-    internal class Gerente : Usuario
+    public class Gerente : Usuario
     {
         public Gerente()
         {
-            Rol = Enums.RolesEnum.Gerente;
+            Rol = RolesEnum.Gerente;
+        }
+
+        public override int ObtenerLimiteReservasSemanales()
+        {
+            return 10;
         }
     }
 }

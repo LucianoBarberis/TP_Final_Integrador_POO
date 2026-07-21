@@ -11,8 +11,17 @@ namespace Tp_Integrador_Final
     {
         public static Usuario usuarioLogeado { get; set; }
         public static RepositorioArchivo<Usuario> RepositorioUsuarios { get; private set; }
+        public static RepositorioArchivo<SalaDeReuniones> RepositorioSalas { get; private set; }
+        public static RepositorioArchivo<Reserva> RepositorioReservas { get; private set; }
 
         public static void Inicializar()
+        {
+            InicializarUsuarios();
+            InicializarSalas();
+            InicializarReservas();
+        }
+
+        private static void InicializarUsuarios()
         {
             RepositorioUsuarios = new RepositorioArchivo<Usuario>(
                 //Nombre de la DB
@@ -56,7 +65,52 @@ namespace Tp_Integrador_Final
                 //Obtener ID
                 usuario => usuario.Id
             );
-            
+        }
+
+        private static void InicializarSalas()
+        {
+            RepositorioSalas = new RepositorioArchivo<SalaDeReuniones>(
+                "salasDB",
+                sala => sala.ToString(),
+                linea =>
+                {
+                    var partes = linea.Split('|');
+                    return new SalaDeReuniones
+                    {
+                        Id = int.Parse(partes[0]),
+                        Nombre = partes[1],
+                        Capacidad = int.Parse(partes[2]),
+                        Ubicacion = partes[3],
+                        Equipamiento = partes[4],
+                        Disponible = bool.Parse(partes[5])
+                    };
+                },
+                sala => sala.Id
+            );
+        }
+
+        private static void InicializarReservas()
+        {
+            RepositorioReservas = new RepositorioArchivo<Reserva>(
+                "reservasDB",
+                reserva => reserva.ToString(),
+                linea =>
+                {
+                    var partes = linea.Split('|');
+                    return new Reserva
+                    {
+                        Id = int.Parse(partes[0]),
+                        SalaId = int.Parse(partes[1]),
+                        UsuarioId = int.Parse(partes[2]),
+                        FechaReserva = DateTime.Parse(partes[3]),
+                        HoraInicio = TimeSpan.Parse(partes[4]),
+                        HoraFin = TimeSpan.Parse(partes[5]),
+                        Motivo = partes[6],
+                        Estado = (ReservaEstadoEnum)int.Parse(partes[7])
+                    };
+                },
+                reserva => reserva.Id
+            );
         }
     }
 }
