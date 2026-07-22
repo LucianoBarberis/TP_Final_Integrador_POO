@@ -92,15 +92,16 @@
             // usuariosToolStripMenuItem
             // 
             usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            usuariosToolStripMenuItem.Size = new Size(215, 26);
+            usuariosToolStripMenuItem.Size = new Size(224, 26);
             usuariosToolStripMenuItem.Text = "Usuarios";
             usuariosToolStripMenuItem.Click += usuariosToolStripMenuItem_Click;
             // 
             // salasDeReunionesToolStripMenuItem
             // 
             salasDeReunionesToolStripMenuItem.Name = "salasDeReunionesToolStripMenuItem";
-            salasDeReunionesToolStripMenuItem.Size = new Size(215, 26);
+            salasDeReunionesToolStripMenuItem.Size = new Size(224, 26);
             salasDeReunionesToolStripMenuItem.Text = "Salas de reuniones";
+            salasDeReunionesToolStripMenuItem.Click += salasDeReunionesToolStripMenuItem_Click;
             // 
             // reportesToolStripMenuItem
             // 

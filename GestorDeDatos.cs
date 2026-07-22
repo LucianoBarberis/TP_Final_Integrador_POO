@@ -81,8 +81,8 @@ namespace Tp_Integrador_Final
                         Nombre = partes[1],
                         Capacidad = int.Parse(partes[2]),
                         Ubicacion = partes[3],
-                        Equipamiento = partes[4],
-                        Disponible = bool.Parse(partes[5])
+                        Disponible = bool.Parse(partes[4]),
+                        Equipamiento = partes[5]
                     };
                 },
                 sala => sala.Id

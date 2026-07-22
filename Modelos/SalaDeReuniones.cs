@@ -20,7 +20,7 @@ namespace Tp_Integrador_Final.Modelos
 
         public override string ToString()
         {
-            return $"{Id}|{Nombre}|{Capacidad}|{Ubicacion}|{Equipamiento}|{Disponible}";
+            return $"{Id}|{Nombre}|{Capacidad}|{Ubicacion}|{Disponible}|{Equipamiento}";
         }
     }
 }

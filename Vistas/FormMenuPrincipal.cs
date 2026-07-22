@@ -13,7 +13,7 @@ namespace Tp_Integrador_Final.Vistas
         public FormMenuPrincipal()
         {
             InitializeComponent();
-            if(GestorDeDatos.usuarioLogeado.Rol == Enums.RolesEnum.Admin)
+            if (GestorDeDatos.usuarioLogeado.Rol == Enums.RolesEnum.Admin)
             {
                 menuAdministradorToolStripMenuItem.Visible = true;
             }
@@ -22,7 +22,7 @@ namespace Tp_Integrador_Final.Vistas
                 menuAdministradorToolStripMenuItem.Visible = false;
             }
 
-            if(GestorDeDatos.usuarioLogeado.Rol == Enums.RolesEnum.Gerente)
+            if (GestorDeDatos.usuarioLogeado.Rol == Enums.RolesEnum.Gerente)
             {
                 gerenteToolStripMenuItem.Visible = true;
             }
@@ -43,6 +43,11 @@ namespace Tp_Integrador_Final.Vistas
         private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new FormGestionDeUsuarios().ShowDialog();
+        }
+
+        private void salasDeReunionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FormGestionSalas().ShowDialog();
         }
     }
 }
