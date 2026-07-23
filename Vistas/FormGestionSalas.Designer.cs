@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormGestionSalas));
-            btnEditUser = new Button();
+            btnEditSala = new Button();
             panel2 = new Panel();
             lblTitle = new Label();
             label7 = new Label();
             label6 = new Label();
             panel1 = new Panel();
             label3 = new Label();
-            textBox1 = new TextBox();
+            tbEquipamiento = new TextBox();
             label2 = new Label();
             tbUbi = new TextBox();
             label1 = new Label();
@@ -44,28 +44,29 @@
             lblName = new Label();
             tbName = new TextBox();
             btnNewSala = new Button();
-            dgvUsers = new DataGridView();
-            button1 = new Button();
+            dgvSalas = new DataGridView();
+            btnDeleteSala = new Button();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)inpCapacidad).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvUsers).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvSalas).BeginInit();
             SuspendLayout();
             // 
-            // btnEditUser
+            // btnEditSala
             // 
-            btnEditUser.BackColor = Color.FromArgb(82, 27, 37);
-            btnEditUser.Cursor = Cursors.Hand;
-            btnEditUser.FlatAppearance.BorderSize = 0;
-            btnEditUser.FlatStyle = FlatStyle.Flat;
-            btnEditUser.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnEditUser.ForeColor = Color.White;
-            btnEditUser.Location = new Point(11, 523);
-            btnEditUser.Name = "btnEditUser";
-            btnEditUser.Size = new Size(302, 31);
-            btnEditUser.TabIndex = 43;
-            btnEditUser.Text = "Editar Sala Seleccionado";
-            btnEditUser.UseVisualStyleBackColor = false;
+            btnEditSala.BackColor = Color.FromArgb(82, 27, 37);
+            btnEditSala.Cursor = Cursors.Hand;
+            btnEditSala.FlatAppearance.BorderSize = 0;
+            btnEditSala.FlatStyle = FlatStyle.Flat;
+            btnEditSala.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnEditSala.ForeColor = Color.White;
+            btnEditSala.Location = new Point(11, 523);
+            btnEditSala.Name = "btnEditSala";
+            btnEditSala.Size = new Size(302, 31);
+            btnEditSala.TabIndex = 43;
+            btnEditSala.Text = "Editar Sala Seleccionado";
+            btnEditSala.UseVisualStyleBackColor = false;
+            btnEditSala.Click += btnEditSala_Click;
             // 
             // panel2
             // 
@@ -112,7 +113,7 @@
             // 
             panel1.BackColor = SystemColors.Control;
             panel1.Controls.Add(label3);
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(tbEquipamiento);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(tbUbi);
             panel1.Controls.Add(label1);
@@ -136,16 +137,16 @@
             label3.TabIndex = 23;
             label3.Text = "Equipamiento";
             // 
-            // textBox1
+            // tbEquipamiento
             // 
-            textBox1.BackColor = Color.White;
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.ForeColor = Color.FromArgb(44, 62, 80);
-            textBox1.Location = new Point(7, 229);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(302, 27);
-            textBox1.TabIndex = 22;
+            tbEquipamiento.BackColor = Color.White;
+            tbEquipamiento.BorderStyle = BorderStyle.None;
+            tbEquipamiento.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tbEquipamiento.ForeColor = Color.FromArgb(44, 62, 80);
+            tbEquipamiento.Location = new Point(7, 229);
+            tbEquipamiento.Name = "tbEquipamiento";
+            tbEquipamiento.Size = new Size(302, 27);
+            tbEquipamiento.TabIndex = 22;
             // 
             // label2
             // 
@@ -226,41 +227,43 @@
             btnNewSala.TabIndex = 6;
             btnNewSala.Text = "Crear Sala";
             btnNewSala.UseVisualStyleBackColor = false;
+            btnNewSala.Click += btnNewSala_Click;
             // 
-            // dgvUsers
+            // dgvSalas
             // 
-            dgvUsers.AllowUserToAddRows = false;
-            dgvUsers.AllowUserToDeleteRows = false;
-            dgvUsers.AllowUserToResizeColumns = false;
-            dgvUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvUsers.BackgroundColor = SystemColors.Control;
-            dgvUsers.BorderStyle = BorderStyle.None;
-            dgvUsers.CellBorderStyle = DataGridViewCellBorderStyle.SunkenHorizontal;
-            dgvUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvUsers.Location = new Point(340, 33);
-            dgvUsers.MultiSelect = false;
-            dgvUsers.Name = "dgvUsers";
-            dgvUsers.ReadOnly = true;
-            dgvUsers.RowHeadersVisible = false;
-            dgvUsers.RowHeadersWidth = 51;
-            dgvUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvUsers.Size = new Size(665, 560);
-            dgvUsers.TabIndex = 38;
+            dgvSalas.AllowUserToAddRows = false;
+            dgvSalas.AllowUserToDeleteRows = false;
+            dgvSalas.AllowUserToResizeColumns = false;
+            dgvSalas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvSalas.BackgroundColor = SystemColors.Control;
+            dgvSalas.BorderStyle = BorderStyle.None;
+            dgvSalas.CellBorderStyle = DataGridViewCellBorderStyle.SunkenHorizontal;
+            dgvSalas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvSalas.Location = new Point(340, 33);
+            dgvSalas.MultiSelect = false;
+            dgvSalas.Name = "dgvSalas";
+            dgvSalas.ReadOnly = true;
+            dgvSalas.RowHeadersVisible = false;
+            dgvSalas.RowHeadersWidth = 51;
+            dgvSalas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvSalas.Size = new Size(665, 560);
+            dgvSalas.TabIndex = 38;
             // 
-            // button1
+            // btnDeleteSala
             // 
-            button1.BackColor = Color.DimGray;
-            button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(11, 562);
-            button1.Name = "button1";
-            button1.Size = new Size(302, 31);
-            button1.TabIndex = 44;
-            button1.Text = "Borrar Sala Seleccionada";
-            button1.UseVisualStyleBackColor = false;
+            btnDeleteSala.BackColor = Color.DimGray;
+            btnDeleteSala.Cursor = Cursors.Hand;
+            btnDeleteSala.FlatAppearance.BorderSize = 0;
+            btnDeleteSala.FlatStyle = FlatStyle.Flat;
+            btnDeleteSala.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnDeleteSala.ForeColor = Color.White;
+            btnDeleteSala.Location = new Point(11, 562);
+            btnDeleteSala.Name = "btnDeleteSala";
+            btnDeleteSala.Size = new Size(302, 31);
+            btnDeleteSala.TabIndex = 44;
+            btnDeleteSala.Text = "Borrar Sala Seleccionada";
+            btnDeleteSala.UseVisualStyleBackColor = false;
+            btnDeleteSala.Click += btnDeleteSala_Click;
             // 
             // FormGestionSalas
             // 
@@ -268,13 +271,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1018, 605);
-            Controls.Add(button1);
-            Controls.Add(btnEditUser);
+            Controls.Add(btnDeleteSala);
+            Controls.Add(btnEditSala);
             Controls.Add(panel2);
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(panel1);
-            Controls.Add(dgvUsers);
+            Controls.Add(dgvSalas);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FormGestionSalas";
             StartPosition = FormStartPosition.CenterParent;
@@ -283,14 +286,14 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)inpCapacidad).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvUsers).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvSalas).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Button btnEditUser;
+        private Button btnEditSala;
         private Panel panel2;
         private Label lblTitle;
         private Label label7;
@@ -299,13 +302,13 @@
         private Label lblName;
         private TextBox tbName;
         private Button btnNewSala;
-        private DataGridView dgvUsers;
-        private Button button1;
+        private DataGridView dgvSalas;
+        private Button btnDeleteSala;
         private Label label1;
         private NumericUpDown inpCapacidad;
         private Label label2;
         private TextBox tbUbi;
         private Label label3;
-        private TextBox textBox1;
+        private TextBox tbEquipamiento;
     }
 }

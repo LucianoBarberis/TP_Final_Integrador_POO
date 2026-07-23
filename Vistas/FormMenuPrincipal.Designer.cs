@@ -47,16 +47,16 @@
             lblRol = new Label();
             label3 = new Label();
             lblMotivo = new Label();
-            txtUser = new TextBox();
+            tbMotivo = new TextBox();
             panel1 = new Panel();
             label5 = new Label();
-            comboBox1 = new ComboBox();
+            cbSala = new ComboBox();
             label4 = new Label();
             label2 = new Label();
             dtpInitDate = new DateTimePicker();
             dtpEndDate = new DateTimePicker();
             label6 = new Label();
-            button1 = new Button();
+            btnCancelReserva = new Button();
             label7 = new Label();
             panel2 = new Panel();
             menuStrip1.SuspendLayout();
@@ -151,6 +151,7 @@
             btnNewReserva.TabIndex = 4;
             btnNewReserva.Text = "Reservar Sala";
             btnNewReserva.UseVisualStyleBackColor = false;
+            btnNewReserva.Click += btnNewReserva_Click;
             // 
             // dgvReservas
             // 
@@ -227,28 +228,28 @@
             lblMotivo.TabIndex = 17;
             lblMotivo.Text = "Motivo";
             // 
-            // txtUser
+            // tbMotivo
             // 
-            txtUser.BackColor = Color.White;
-            txtUser.BorderStyle = BorderStyle.None;
-            txtUser.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtUser.ForeColor = Color.FromArgb(44, 62, 80);
-            txtUser.Location = new Point(7, 164);
-            txtUser.Name = "txtUser";
-            txtUser.Size = new Size(302, 27);
-            txtUser.TabIndex = 3;
+            tbMotivo.BackColor = Color.White;
+            tbMotivo.BorderStyle = BorderStyle.None;
+            tbMotivo.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tbMotivo.ForeColor = Color.FromArgb(44, 62, 80);
+            tbMotivo.Location = new Point(7, 164);
+            tbMotivo.Name = "tbMotivo";
+            tbMotivo.Size = new Size(302, 27);
+            tbMotivo.TabIndex = 3;
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.Control;
             panel1.Controls.Add(label5);
-            panel1.Controls.Add(comboBox1);
+            panel1.Controls.Add(cbSala);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(dtpInitDate);
             panel1.Controls.Add(dtpEndDate);
             panel1.Controls.Add(lblMotivo);
-            panel1.Controls.Add(txtUser);
+            panel1.Controls.Add(tbMotivo);
             panel1.Controls.Add(btnNewReserva);
             panel1.Location = new Point(12, 223);
             panel1.Name = "panel1";
@@ -266,16 +267,16 @@
             label5.TabIndex = 24;
             label5.Text = "Sala";
             // 
-            // comboBox1
+            // cbSala
             // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.FlatStyle = FlatStyle.Flat;
-            comboBox1.Font = new Font("Segoe UI", 9F);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(7, 34);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(302, 28);
-            comboBox1.TabIndex = 0;
+            cbSala.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbSala.FlatStyle = FlatStyle.Flat;
+            cbSala.Font = new Font("Segoe UI", 9F);
+            cbSala.FormattingEnabled = true;
+            cbSala.Location = new Point(7, 34);
+            cbSala.Name = "cbSala";
+            cbSala.Size = new Size(302, 28);
+            cbSala.TabIndex = 0;
             // 
             // label4
             // 
@@ -334,20 +335,21 @@
             label6.TabIndex = 25;
             label6.Text = "Reservas";
             // 
-            // button1
+            // btnCancelReserva
             // 
-            button1.BackColor = Color.FromArgb(82, 27, 37);
-            button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(19, 520);
-            button1.Name = "button1";
-            button1.Size = new Size(302, 31);
-            button1.TabIndex = 5;
-            button1.Text = "Cancelar Reserva Seleccionada";
-            button1.UseVisualStyleBackColor = false;
+            btnCancelReserva.BackColor = Color.FromArgb(82, 27, 37);
+            btnCancelReserva.Cursor = Cursors.Hand;
+            btnCancelReserva.FlatAppearance.BorderSize = 0;
+            btnCancelReserva.FlatStyle = FlatStyle.Flat;
+            btnCancelReserva.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnCancelReserva.ForeColor = Color.White;
+            btnCancelReserva.Location = new Point(19, 520);
+            btnCancelReserva.Name = "btnCancelReserva";
+            btnCancelReserva.Size = new Size(302, 31);
+            btnCancelReserva.TabIndex = 5;
+            btnCancelReserva.Text = "Cancelar Reserva Seleccionada";
+            btnCancelReserva.UseVisualStyleBackColor = false;
+            btnCancelReserva.Click += btnCancelReserva_Click;
             // 
             // label7
             // 
@@ -381,7 +383,7 @@
             ClientSize = new Size(1029, 566);
             Controls.Add(panel2);
             Controls.Add(label7);
-            Controls.Add(button1);
+            Controls.Add(btnCancelReserva);
             Controls.Add(label6);
             Controls.Add(panel1);
             Controls.Add(dgvReservas);
@@ -422,16 +424,16 @@
         private Label lblRol;
         private Label label3;
         private Label lblMotivo;
-        private TextBox txtUser;
+        private TextBox tbMotivo;
         private Panel panel1;
         private DateTimePicker dtpEndDate;
         private Label label4;
         private Label label2;
         private DateTimePicker dtpInitDate;
-        private ComboBox comboBox1;
+        private ComboBox cbSala;
         private Label label5;
         private Label label6;
-        private Button button1;
+        private Button btnCancelReserva;
         private Label label7;
         private Panel panel2;
         private ToolStripMenuItem cerrarSesiónToolStripMenuItem;
