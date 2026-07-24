@@ -31,9 +31,17 @@ namespace Tp_Integrador_Final.Vistas
             lblUserName.Text = GestorDeDatos.usuarioLogeado.Name;
             lblRol.Text = GestorDeDatos.usuarioLogeado.Rol.ToString();
 
-            ConfigurarDataGridView();
-            CargarSalas();
-            RefrescarDGV();
+            try
+            {
+                ConfigurarDataGridView();
+                CargarSalas();
+                RefrescarDGV();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar datos: {ex.Message}",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ConfigurarDataGridView()
@@ -350,6 +358,11 @@ namespace Tp_Integrador_Final.Vistas
         private void salasDeReunionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new FormGestionSalas().ShowDialog();
+        }
+
+        private void reportesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FormReportes().ShowDialog();
         }
     }
 }
