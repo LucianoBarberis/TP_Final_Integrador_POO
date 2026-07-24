@@ -51,14 +51,14 @@ namespace Tp_Integrador_Final.Vistas
             colNombre.Name = "Nombre";
             colNombre.DataPropertyName = "Nombre";
             colNombre.HeaderText = "Nombre";
-            colNombre.FillWeight = 25;
+            colNombre.FillWeight = 15;
             dgvSalas.Columns.Add(colNombre);
 
             DataGridViewTextBoxColumn colCapacidad = new DataGridViewTextBoxColumn();
             colCapacidad.Name = "Capacidad";
             colCapacidad.DataPropertyName = "Capacidad";
             colCapacidad.HeaderText = "Capacidad";
-            colCapacidad.FillWeight = 10;
+            colCapacidad.FillWeight = 20;
             colCapacidad.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvSalas.Columns.Add(colCapacidad);
 
@@ -73,14 +73,14 @@ namespace Tp_Integrador_Final.Vistas
             colEquipamiento.Name = "Equipamiento";
             colEquipamiento.DataPropertyName = "Equipamiento";
             colEquipamiento.HeaderText = "Equipamiento";
-            colEquipamiento.FillWeight = 30;
+            colEquipamiento.FillWeight = 20;
             dgvSalas.Columns.Add(colEquipamiento);
 
             DataGridViewCheckBoxColumn colDisponible = new DataGridViewCheckBoxColumn();
             colDisponible.Name = "Disponible";
             colDisponible.DataPropertyName = "Disponible";
             colDisponible.HeaderText = "Disponible";
-            colDisponible.FillWeight = 10;
+            colDisponible.FillWeight = 15;
             colDisponible.ReadOnly = true;
             dgvSalas.Columns.Add(colDisponible);
         }
@@ -160,7 +160,7 @@ namespace Tp_Integrador_Final.Vistas
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
+            
             using (var formEditSala = new FormEditSala(salaSeleccionada))
             {
                 if (formEditSala.ShowDialog() == DialogResult.OK)
