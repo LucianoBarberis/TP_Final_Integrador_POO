@@ -36,8 +36,6 @@ namespace Tp_Integrador_Final.Modelos
             get => horaFin;
             set
             {
-                if (value <= horaInicio)
-                    throw new ArgumentException("La hora de fin debe ser posterior a la hora de inicio.");
                 if (value < TimeSpan.Zero || value > TimeSpan.FromDays(1))
                     throw new ArgumentException("La hora de fin debe estar entre 00:00 y 23:59.");
                 horaFin = value;
@@ -47,7 +45,9 @@ namespace Tp_Integrador_Final.Modelos
         public string Motivo { get => motivo; set => motivo = value; }
         public ReservaEstadoEnum Estado { get => estado; set => estado = value; }
 
-        public TimeSpan DuracionReserva => horaFin - horaInicio;
+        public TimeSpan DuracionReserva => horaFin < horaInicio
+            ? horaFin + TimeSpan.FromDays(1) - horaInicio
+            : horaFin - horaInicio;
         public bool EstaVencida => fechaReserva < DateTime.Today || (fechaReserva == DateTime.Today && horaFin <= DateTime.Now.TimeOfDay);
 
         public Reserva() { }

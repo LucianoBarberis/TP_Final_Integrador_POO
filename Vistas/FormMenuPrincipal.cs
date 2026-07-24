@@ -194,11 +194,13 @@ namespace Tp_Integrador_Final.Vistas
 
                 SalaDeReuniones sala = (SalaDeReuniones)cbSala.SelectedItem;
                 string motivo = tbMotivo.Text.Trim();
-                DateTime fecha = dtpInitDate.Value.Date;
-                TimeSpan horaInicio = new TimeSpan(dtpInitDate.Value.Hour, dtpInitDate.Value.Minute, 0);
-                TimeSpan horaFin = new TimeSpan(dtpEndDate.Value.Hour, dtpEndDate.Value.Minute, 0);
+                DateTime inicio = dtpInitDate.Value;
+                DateTime fin = dtpEndDate.Value;
+                DateTime fecha = inicio.Date;
+                TimeSpan horaInicio = inicio.TimeOfDay;
+                TimeSpan horaFin = fin.TimeOfDay;
 
-                if (horaInicio >= horaFin)
+                if (fin <= inicio)
                 {
                     MessageBox.Show("La hora de fin debe ser posterior a la hora de inicio.",
                         "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -216,10 +218,9 @@ namespace Tp_Integrador_Final.Vistas
 
                 bool solapa = reservas.Any(r =>
                     r.SalaId == sala.Id &&
-                    r.FechaReserva.Date == fecha &&
                     r.Estado != ReservaEstadoEnum.Cancelada &&
-                    r.HoraInicio < horaFin &&
-                    r.HoraFin > horaInicio);
+                    (r.FechaReserva + r.HoraInicio) < fin &&
+                    (r.FechaReserva + (r.HoraFin < r.HoraInicio ? r.HoraFin + TimeSpan.FromDays(1) : r.HoraFin)) > inicio);
 
                 if (solapa)
                 {
