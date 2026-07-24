@@ -176,9 +176,17 @@ namespace Tp_Integrador_Final.Vistas
 
         private void RefrescarDGV()
         {
-            dgvReservas.DataSource = null;
-            dgvReservas.DataSource = new BindingList<Reserva>(
-                GestorDeDatos.RepositorioReservas.Listar());
+            if(GestorDeDatos.usuarioLogeado.Rol == RolesEnum.Admin)
+            {
+                dgvReservas.DataSource = new BindingList<Reserva>(
+                    GestorDeDatos.RepositorioReservas.Listar());
+            }
+            else
+            {
+                dgvReservas.DataSource = new BindingList<Reserva>(
+                    GestorDeDatos.RepositorioReservas.Listar()
+                        .Where(r => r.UsuarioId == GestorDeDatos.usuarioLogeado.Id).ToList());
+            }
         }
 
         private void btnNewReserva_Click(object sender, EventArgs e)
@@ -354,6 +362,11 @@ namespace Tp_Integrador_Final.Vistas
         }
 
         private void reportesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FormReportes().ShowDialog();
+        }
+
+        private void reportesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             new FormReportes().ShowDialog();
         }

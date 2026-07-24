@@ -120,8 +120,9 @@
             // reportesToolStripMenuItem1
             // 
             reportesToolStripMenuItem1.Name = "reportesToolStripMenuItem1";
-            reportesToolStripMenuItem1.Size = new Size(151, 26);
+            reportesToolStripMenuItem1.Size = new Size(224, 26);
             reportesToolStripMenuItem1.Text = "Reportes";
+            reportesToolStripMenuItem1.Click += reportesToolStripMenuItem1_Click;
             // 
             // cerrarSesiónToolStripMenuItem
             // 

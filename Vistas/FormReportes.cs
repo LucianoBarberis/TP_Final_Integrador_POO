@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -13,128 +14,122 @@ namespace Tp_Integrador_Final.Vistas
 {
     public partial class FormReportes : Form
     {
+        private enum ReporteActivo { Ninguno, ReservasDelDia, UsoPorSala, Ranking }
+        private ReporteActivo _reporteActual = ReporteActivo.Ninguno;
+
         public FormReportes()
         {
             InitializeComponent();
             dtpFecha.Value = DateTime.Today;
-            ConfigurarDataGridViews();
-            CargarReportes();
+            dtpFecha.ValueChanged += (s, e) => CargarReservasDelDia();
+            panelFecha.Visible = false;
         }
 
-        private void ConfigurarDataGridViews()
+        private void btnReservasDelDia_Click(object? sender, EventArgs e)
         {
+            _reporteActual = ReporteActivo.ReservasDelDia;
+            panelFecha.Visible = true;
             ConfigurarDGVReservasDelDia();
-            ConfigurarDGVSala();
+            CargarReservasDelDia();
         }
+
+        private void btnUsoPorSala_Click(object? sender, EventArgs e)
+        {
+            _reporteActual = ReporteActivo.UsoPorSala;
+            panelFecha.Visible = false;
+            ConfigurarDGVSimple();
+            CargarUsoPorSala();
+        }
+
+        private void btnRanking_Click(object? sender, EventArgs e)
+        {
+            _reporteActual = ReporteActivo.Ranking;
+            panelFecha.Visible = false;
+            ConfigurarDGVRanking();
+            CargarRanking();
+        }
+
+        #region Configuracion de columnas
 
         private void ConfigurarDGVReservasDelDia()
         {
-            dgvReservasDelDia.AutoGenerateColumns = false;
-            dgvReservasDelDia.Columns.Clear();
+            dgvReporte.Columns.Clear();
+            dgvReporte.AutoGenerateColumns = false;
 
-            DataGridViewTextBoxColumn colSala = new DataGridViewTextBoxColumn();
-            colSala.Name = "Sala";
-            colSala.HeaderText = "Sala";
-            colSala.FillWeight = 20;
-            dgvReservasDelDia.Columns.Add(colSala);
+            dgvReporte.Columns.Add(new DataGridViewTextBoxColumn { Name = "Sala", HeaderText = "Sala", DataPropertyName = "Sala", FillWeight = 20 });
+            dgvReporte.Columns.Add(new DataGridViewTextBoxColumn { Name = "HoraInicio", HeaderText = "Inicio", DataPropertyName = "HoraInicio", FillWeight = 12 });
+            dgvReporte.Columns.Add(new DataGridViewTextBoxColumn { Name = "HoraFin", HeaderText = "Fin", DataPropertyName = "HoraFin", FillWeight = 12 });
+            dgvReporte.Columns.Add(new DataGridViewTextBoxColumn { Name = "Motivo", HeaderText = "Motivo", DataPropertyName = "Motivo", FillWeight = 25 });
+            dgvReporte.Columns.Add(new DataGridViewTextBoxColumn { Name = "Usuario", HeaderText = "Usuario", DataPropertyName = "Usuario", FillWeight = 16 });
+            dgvReporte.Columns.Add(new DataGridViewTextBoxColumn { Name = "Estado", HeaderText = "Estado", DataPropertyName = "Estado", FillWeight = 10 });
 
-            DataGridViewTextBoxColumn colInicio = new DataGridViewTextBoxColumn();
-            colInicio.Name = "HoraInicio";
-            colInicio.HeaderText = "Inicio";
-            colInicio.FillWeight = 12;
-            dgvReservasDelDia.Columns.Add(colInicio);
-
-            DataGridViewTextBoxColumn colFin = new DataGridViewTextBoxColumn();
-            colFin.Name = "HoraFin";
-            colFin.HeaderText = "Fin";
-            colFin.FillWeight = 12;
-            dgvReservasDelDia.Columns.Add(colFin);
-
-            DataGridViewTextBoxColumn colMotivo = new DataGridViewTextBoxColumn();
-            colMotivo.Name = "Motivo";
-            colMotivo.HeaderText = "Motivo";
-            colMotivo.FillWeight = 25;
-            dgvReservasDelDia.Columns.Add(colMotivo);
-
-            DataGridViewTextBoxColumn colUsuario = new DataGridViewTextBoxColumn();
-            colUsuario.Name = "Usuario";
-            colUsuario.HeaderText = "Usuario";
-            colUsuario.FillWeight = 16;
-            dgvReservasDelDia.Columns.Add(colUsuario);
-
-            DataGridViewTextBoxColumn colEstado = new DataGridViewTextBoxColumn();
-            colEstado.Name = "Estado";
-            colEstado.HeaderText = "Estado";
-            colEstado.FillWeight = 10;
-            dgvReservasDelDia.Columns.Add(colEstado);
-
-            dgvReservasDelDia.CellFormatting += DgvReservasDelDia_CellFormatting;
+            dgvReporte.CellFormatting -= DgvReporte_CellFormatting;
+            dgvReporte.CellFormatting += DgvReporte_CellFormatting;
         }
 
-        private void ConfigurarDGVSala()
+        private void ConfigurarDGVSimple()
         {
-            dgvUsoPorSala.AutoGenerateColumns = false;
-            dgvUsoPorSala.Columns.Clear();
+            dgvReporte.Columns.Clear();
+            dgvReporte.AutoGenerateColumns = false;
 
-            DataGridViewTextBoxColumn colPos = new DataGridViewTextBoxColumn();
-            colPos.Name = "Posicion";
-            colPos.HeaderText = "#";
-            colPos.FillWeight = 8;
-            colPos.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvUsoPorSala.Columns.Add(colPos);
+            dgvReporte.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Posicion",
+                HeaderText = "#",
+                DataPropertyName = "Posicion",
+                FillWeight = 8,
+                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
+            });
+            dgvReporte.Columns.Add(new DataGridViewTextBoxColumn { Name = "Sala", HeaderText = "Sala", DataPropertyName = "Sala", FillWeight = 60 });
+            dgvReporte.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Cantidad",
+                HeaderText = "Reservas",
+                DataPropertyName = "Cantidad",
+                FillWeight = 20,
+                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
+            });
 
-            DataGridViewTextBoxColumn colSala = new DataGridViewTextBoxColumn();
-            colSala.Name = "Sala";
-            colSala.HeaderText = "Sala";
-            colSala.FillWeight = 60;
-            dgvUsoPorSala.Columns.Add(colSala);
-
-            DataGridViewTextBoxColumn colCantidad = new DataGridViewTextBoxColumn();
-            colCantidad.Name = "Cantidad";
-            colCantidad.HeaderText = "Reservas";
-            colCantidad.FillWeight = 20;
-            colCantidad.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvUsoPorSala.Columns.Add(colCantidad);
-
-            // Ranking usa las mismas columnas
-            dgvRanking.AutoGenerateColumns = false;
-            dgvRanking.Columns.Clear();
-
-            DataGridViewTextBoxColumn colRankPos = new DataGridViewTextBoxColumn();
-            colRankPos.Name = "Posicion";
-            colRankPos.HeaderText = "#";
-            colRankPos.FillWeight = 8;
-            colRankPos.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvRanking.Columns.Add(colRankPos);
-
-            DataGridViewTextBoxColumn colRankSala = new DataGridViewTextBoxColumn();
-            colRankSala.Name = "Sala";
-            colRankSala.HeaderText = "Sala";
-            colRankSala.FillWeight = 60;
-            dgvRanking.Columns.Add(colRankSala);
-
-            DataGridViewTextBoxColumn colRankCantidad = new DataGridViewTextBoxColumn();
-            colRankCantidad.Name = "Cantidad";
-            colRankCantidad.HeaderText = "Reservas";
-            colRankCantidad.FillWeight = 20;
-            colRankCantidad.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvRanking.Columns.Add(colRankCantidad);
+            dgvReporte.CellFormatting -= DgvReporte_CellFormatting;
         }
 
-        private void CargarReportes()
+        private void ConfigurarDGVRanking()
         {
-            try
+            dgvReporte.Columns.Clear();
+            dgvReporte.AutoGenerateColumns = false;
+
+            dgvReporte.Columns.Add(new DataGridViewTextBoxColumn
             {
-                CargarReservasDelDia();
-                CargarUsoPorSala();
-                CargarRanking();
-            }
-            catch (Exception ex)
+                Name = "Posicion",
+                HeaderText = "#",
+                DataPropertyName = "Posicion",
+                FillWeight = 8,
+                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
+            });
+            dgvReporte.Columns.Add(new DataGridViewTextBoxColumn { Name = "Sala", HeaderText = "Sala", DataPropertyName = "Sala", FillWeight = 50 });
+            dgvReporte.Columns.Add(new DataGridViewTextBoxColumn
             {
-                MessageBox.Show($"Error al cargar reportes: {ex.Message}",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                Name = "Cantidad",
+                HeaderText = "Reservas",
+                DataPropertyName = "Cantidad",
+                FillWeight = 20,
+                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
+            });
+            dgvReporte.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Porcentaje",
+                HeaderText = "Demanda",
+                DataPropertyName = "Porcentaje",
+                FillWeight = 12,
+                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
+            });
+
+            dgvReporte.CellFormatting -= DgvReporte_CellFormatting;
         }
+
+        #endregion
+
+        #region Carga de datos
 
         private void CargarReservasDelDia()
         {
@@ -151,12 +146,11 @@ namespace Tp_Integrador_Final.Vistas
                 Usuario usuario = GestorDeDatos.RepositorioUsuarios.Obtener(r.UsuarioId);
                 return new
                 {
-                    r.Id,
-                    Sala = sala?.Nombre ?? "—",
+                    Sala = sala?.Nombre ?? "\u2014",
                     r.HoraInicio,
                     r.HoraFin,
                     r.Motivo,
-                    Usuario = usuario?.Name ?? "—",
+                    Usuario = usuario?.Name ?? "\u2014",
                     Estado = r.Estado switch
                     {
                         ReservaEstadoEnum.Pendiente => "Pendiente",
@@ -167,30 +161,8 @@ namespace Tp_Integrador_Final.Vistas
                 };
             }).ToList();
 
-            dgvReservasDelDia.DataSource = null;
-            dgvReservasDelDia.DataSource = new BindingList<object>(data.Cast<object>().ToList());
-        }
-
-        private void DgvReservasDelDia_CellFormatting(object? sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (e.RowIndex < 0) return;
-
-            var row = dgvReservasDelDia.Rows[e.RowIndex];
-
-            if (dgvReservasDelDia.Columns[e.ColumnIndex].Name == "HoraInicio")
-            {
-                var hora = row.DataBoundItem.GetType().GetProperty("HoraInicio")?.GetValue(row.DataBoundItem);
-                if (hora is TimeSpan ts)
-                    e.Value = $"{ts.Hours:D2}:{ts.Minutes:D2}";
-                e.FormattingApplied = true;
-            }
-            else if (dgvReservasDelDia.Columns[e.ColumnIndex].Name == "HoraFin")
-            {
-                var hora = row.DataBoundItem.GetType().GetProperty("HoraFin")?.GetValue(row.DataBoundItem);
-                if (hora is TimeSpan ts)
-                    e.Value = $"{ts.Hours:D2}:{ts.Minutes:D2}";
-                e.FormattingApplied = true;
-            }
+            dgvReporte.DataSource = null;
+            dgvReporte.DataSource = new BindingList<object>(data.Cast<object>().ToList());
         }
 
         private void CargarUsoPorSala()
@@ -198,11 +170,7 @@ namespace Tp_Integrador_Final.Vistas
             var usoPorSala = GestorDeDatos.RepositorioReservas.Listar()
                 .Where(r => r.Estado != ReservaEstadoEnum.Cancelada)
                 .GroupBy(r => r.SalaId)
-                .Select(g => new
-                {
-                    SalaId = g.Key,
-                    Cantidad = g.Count()
-                })
+                .Select(g => new { SalaId = g.Key, Cantidad = g.Count() })
                 .OrderByDescending(x => x.Cantidad)
                 .ToList();
 
@@ -213,13 +181,13 @@ namespace Tp_Integrador_Final.Vistas
                 return new
                 {
                     Posicion = posicion++,
-                    Sala = sala?.Nombre ?? "—",
+                    Sala = sala?.Nombre ?? "\u2014",
                     x.Cantidad
                 };
             }).ToList();
 
-            dgvUsoPorSala.DataSource = null;
-            dgvUsoPorSala.DataSource = new BindingList<object>(data.Cast<object>().ToList());
+            dgvReporte.DataSource = null;
+            dgvReporte.DataSource = new BindingList<object>(data.Cast<object>().ToList());
         }
 
         private void CargarRanking()
@@ -227,11 +195,7 @@ namespace Tp_Integrador_Final.Vistas
             var ranking = GestorDeDatos.RepositorioReservas.Listar()
                 .Where(r => r.Estado != ReservaEstadoEnum.Cancelada)
                 .GroupBy(r => r.SalaId)
-                .Select(g => new
-                {
-                    SalaId = g.Key,
-                    Cantidad = g.Count()
-                })
+                .Select(g => new { SalaId = g.Key, Cantidad = g.Count() })
                 .OrderByDescending(x => x.Cantidad)
                 .ToList();
 
@@ -242,32 +206,109 @@ namespace Tp_Integrador_Final.Vistas
                 return new
                 {
                     Posicion = posicion++,
-                    Sala = sala?.Nombre ?? "—",
+                    Sala = sala?.Nombre ?? "\u2014",
                     Cantidad = x.Cantidad,
                     Porcentaje = ranking.Count > 0
                         ? $"{x.Cantidad * 100.0 / ranking.Max(r => r.Cantidad):F0}%"
-                        : "—"
+                        : "\u2014"
                 };
             }).ToList();
 
-            dgvRanking.DataSource = null;
-            dgvRanking.DataSource = new BindingList<object>(data.Cast<object>().ToList());
+            dgvReporte.DataSource = null;
+            dgvReporte.DataSource = new BindingList<object>(data.Cast<object>().ToList());
+        }
 
-            if (dgvRanking.Columns["Porcentaje"] == null)
+        #endregion
+
+        private void DgvReporte_CellFormatting(object? sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            var row = dgvReporte.Rows[e.RowIndex];
+            var colName = dgvReporte.Columns[e.ColumnIndex].Name;
+
+            if (colName == "HoraInicio" || colName == "HoraFin")
             {
-                DataGridViewTextBoxColumn colPorcentaje = new DataGridViewTextBoxColumn();
-                colPorcentaje.Name = "Porcentaje";
-                colPorcentaje.HeaderText = "Demanda";
-                colPorcentaje.DataPropertyName = "Porcentaje";
-                colPorcentaje.FillWeight = 12;
-                colPorcentaje.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgvRanking.Columns.Add(colPorcentaje);
+                var prop = row.DataBoundItem?.GetType().GetProperty(colName);
+                if (prop?.GetValue(row.DataBoundItem) is TimeSpan ts)
+                    e.Value = $"{ts.Hours:D2}:{ts.Minutes:D2}";
+                e.FormattingApplied = true;
             }
         }
 
-        private void btnActualizar_Click(object? sender, EventArgs e)
+        #region Exportar CSV
+
+        private void btnExportar_Click(object? sender, EventArgs e)
         {
-            CargarReservasDelDia();
+            if (_reporteActual == ReporteActivo.Ninguno)
+            {
+                MessageBox.Show("Seleccione un reporte antes de exportar.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (dgvReporte.Rows.Count == 0)
+            {
+                MessageBox.Show("No hay datos para exportar.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            string nombreArchivo = _reporteActual switch
+            {
+                ReporteActivo.ReservasDelDia => "ReservasDelDia",
+                ReporteActivo.UsoPorSala => "UsoPorSala",
+                ReporteActivo.Ranking => "RankingSalas",
+                _ => "Reporte"
+            };
+
+            using SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Archivo CSV (*.csv)|*.csv";
+            sfd.FileName = $"{nombreArchivo}_{DateTime.Today:yyyyMMdd}.csv";
+
+            if (sfd.ShowDialog() != DialogResult.OK) return;
+
+            try
+            {
+                var sb = new StringBuilder();
+
+                foreach (DataGridViewColumn col in dgvReporte.Columns)
+                {
+                    sb.Append(EscapeCsv(col.HeaderText));
+                    sb.Append(';');
+                }
+                sb.AppendLine();
+
+                foreach (DataGridViewRow row in dgvReporte.Rows)
+                {
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        string valor = cell.FormattedValue?.ToString() ?? "";
+                        sb.Append(EscapeCsv(valor));
+                        sb.Append(';');
+                    }
+                    sb.AppendLine();
+                }
+
+                File.WriteAllText(sfd.FileName, sb.ToString(), Encoding.UTF8);
+
+                MessageBox.Show("Archivo exportado correctamente.", "Exito",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al exportar: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+        private static string EscapeCsv(string valor)
+        {
+            if (valor.Contains(';') || valor.Contains('"') || valor.Contains('\n'))
+                return $"\"{valor.Replace("\"", "\"\"")}\"";
+            return valor;
+        }
+
+        #endregion
     }
 }
