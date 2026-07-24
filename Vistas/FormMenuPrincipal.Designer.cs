@@ -86,7 +86,7 @@
             // 
             gestiónDeUsuariosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { usuariosToolStripMenuItem, salasDeReunionesToolStripMenuItem });
             gestiónDeUsuariosToolStripMenuItem.Name = "gestiónDeUsuariosToolStripMenuItem";
-            gestiónDeUsuariosToolStripMenuItem.Size = new Size(151, 26);
+            gestiónDeUsuariosToolStripMenuItem.Size = new Size(224, 26);
             gestiónDeUsuariosToolStripMenuItem.Text = "Gestión";
             // 
             // usuariosToolStripMenuItem
@@ -106,7 +106,7 @@
             // reportesToolStripMenuItem
             // 
             reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
-            reportesToolStripMenuItem.Size = new Size(151, 26);
+            reportesToolStripMenuItem.Size = new Size(224, 26);
             reportesToolStripMenuItem.Text = "Reportes";
             reportesToolStripMenuItem.Click += reportesToolStripMenuItem_Click;
             // 
@@ -122,7 +122,6 @@
             reportesToolStripMenuItem1.Name = "reportesToolStripMenuItem1";
             reportesToolStripMenuItem1.Size = new Size(151, 26);
             reportesToolStripMenuItem1.Text = "Reportes";
-            reportesToolStripMenuItem1.Click += reportesToolStripMenuItem_Click;
             // 
             // cerrarSesiónToolStripMenuItem
             // 

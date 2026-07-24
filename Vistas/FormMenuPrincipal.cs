@@ -30,7 +30,7 @@ namespace Tp_Integrador_Final.Vistas
 
             lblUserName.Text = GestorDeDatos.usuarioLogeado.Name;
             lblRol.Text = GestorDeDatos.usuarioLogeado.Rol.ToString();
-            
+
             ConfigurarDataGridView();
             CargarSalas();
             RefrescarDGV();
@@ -351,6 +351,11 @@ namespace Tp_Integrador_Final.Vistas
         {
             new FormGestionSalas().ShowDialog();
             CargarSalas();
+        }
+
+        private void reportesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FormReportes().ShowDialog();
         }
     }
 }
