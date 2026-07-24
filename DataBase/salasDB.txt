@@ -1,0 +1,2 @@
+9772571|sala 1|218|minecraft|False|pc, notebook
+5965088|sala 7|9|minecraft 2|True|proyector, pollo

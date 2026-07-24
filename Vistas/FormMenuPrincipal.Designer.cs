@@ -71,6 +71,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { menuAdministradorToolStripMenuItem, gerenteToolStripMenuItem, cerrarSesiónToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
+            menuStrip1.ShowItemToolTips = true;
             menuStrip1.Size = new Size(1029, 28);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
@@ -86,27 +87,27 @@
             // 
             gestiónDeUsuariosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { usuariosToolStripMenuItem, salasDeReunionesToolStripMenuItem });
             gestiónDeUsuariosToolStripMenuItem.Name = "gestiónDeUsuariosToolStripMenuItem";
-            gestiónDeUsuariosToolStripMenuItem.Size = new Size(224, 26);
+            gestiónDeUsuariosToolStripMenuItem.Size = new Size(151, 26);
             gestiónDeUsuariosToolStripMenuItem.Text = "Gestión";
             // 
             // usuariosToolStripMenuItem
             // 
             usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            usuariosToolStripMenuItem.Size = new Size(224, 26);
+            usuariosToolStripMenuItem.Size = new Size(215, 26);
             usuariosToolStripMenuItem.Text = "Usuarios";
             usuariosToolStripMenuItem.Click += usuariosToolStripMenuItem_Click;
             // 
             // salasDeReunionesToolStripMenuItem
             // 
             salasDeReunionesToolStripMenuItem.Name = "salasDeReunionesToolStripMenuItem";
-            salasDeReunionesToolStripMenuItem.Size = new Size(224, 26);
+            salasDeReunionesToolStripMenuItem.Size = new Size(215, 26);
             salasDeReunionesToolStripMenuItem.Text = "Salas de reuniones";
             salasDeReunionesToolStripMenuItem.Click += salasDeReunionesToolStripMenuItem_Click;
             // 
             // reportesToolStripMenuItem
             // 
             reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
-            reportesToolStripMenuItem.Size = new Size(224, 26);
+            reportesToolStripMenuItem.Size = new Size(151, 26);
             reportesToolStripMenuItem.Text = "Reportes";
             // 
             // gerenteToolStripMenuItem
@@ -124,17 +125,19 @@
             // 
             // cerrarSesiónToolStripMenuItem
             // 
+            cerrarSesiónToolStripMenuItem.AutoToolTip = true;
             cerrarSesiónToolStripMenuItem.DoubleClickEnabled = true;
             cerrarSesiónToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dobleClickToolStripMenuItem });
             cerrarSesiónToolStripMenuItem.Name = "cerrarSesiónToolStripMenuItem";
             cerrarSesiónToolStripMenuItem.Size = new Size(110, 24);
             cerrarSesiónToolStripMenuItem.Text = "Cerrar Sesión";
+            cerrarSesiónToolStripMenuItem.ToolTipText = "Doble click para cerrar sesión";
             cerrarSesiónToolStripMenuItem.DoubleClick += cerrarSesiónToolStripMenuItem_DoubleClick;
             // 
             // dobleClickToolStripMenuItem
             // 
             dobleClickToolStripMenuItem.Name = "dobleClickToolStripMenuItem";
-            dobleClickToolStripMenuItem.Size = new Size(178, 26);
+            dobleClickToolStripMenuItem.Size = new Size(224, 26);
             dobleClickToolStripMenuItem.Text = "(Doble Click)";
             // 
             // btnNewReserva
