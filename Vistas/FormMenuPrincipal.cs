@@ -350,6 +350,7 @@ namespace Tp_Integrador_Final.Vistas
         private void salasDeReunionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new FormGestionSalas().ShowDialog();
+            CargarSalas();
         }
     }
 }

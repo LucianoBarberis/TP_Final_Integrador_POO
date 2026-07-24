@@ -60,7 +60,7 @@
             btnEditSala.FlatStyle = FlatStyle.Flat;
             btnEditSala.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnEditSala.ForeColor = Color.White;
-            btnEditSala.Location = new Point(11, 523);
+            btnEditSala.Location = new Point(23, 532);
             btnEditSala.Name = "btnEditSala";
             btnEditSala.Size = new Size(302, 31);
             btnEditSala.TabIndex = 43;
@@ -72,7 +72,7 @@
             // 
             panel2.BackColor = SystemColors.Control;
             panel2.Controls.Add(lblTitle);
-            panel2.Location = new Point(4, 7);
+            panel2.Location = new Point(16, 16);
             panel2.Name = "panel2";
             panel2.Size = new Size(319, 128);
             panel2.TabIndex = 42;
@@ -92,7 +92,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.FromArgb(100, 100, 120);
-            label7.Location = new Point(4, 150);
+            label7.Location = new Point(16, 159);
             label7.Name = "label7";
             label7.Size = new Size(95, 23);
             label7.TabIndex = 41;
@@ -103,7 +103,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.FromArgb(100, 100, 120);
-            label6.Location = new Point(340, 7);
+            label6.Location = new Point(352, 16);
             label6.Name = "label6";
             label6.Size = new Size(122, 23);
             label6.TabIndex = 40;
@@ -121,7 +121,7 @@
             panel1.Controls.Add(lblName);
             panel1.Controls.Add(tbName);
             panel1.Controls.Add(btnNewSala);
-            panel1.Location = new Point(4, 176);
+            panel1.Location = new Point(16, 185);
             panel1.Name = "panel1";
             panel1.Size = new Size(319, 328);
             panel1.TabIndex = 39;
@@ -239,7 +239,7 @@
             dgvSalas.BorderStyle = BorderStyle.None;
             dgvSalas.CellBorderStyle = DataGridViewCellBorderStyle.SunkenHorizontal;
             dgvSalas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvSalas.Location = new Point(340, 33);
+            dgvSalas.Location = new Point(352, 42);
             dgvSalas.MultiSelect = false;
             dgvSalas.Name = "dgvSalas";
             dgvSalas.ReadOnly = true;
@@ -257,7 +257,7 @@
             btnDeleteSala.FlatStyle = FlatStyle.Flat;
             btnDeleteSala.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnDeleteSala.ForeColor = Color.White;
-            btnDeleteSala.Location = new Point(11, 562);
+            btnDeleteSala.Location = new Point(23, 571);
             btnDeleteSala.Name = "btnDeleteSala";
             btnDeleteSala.Size = new Size(302, 31);
             btnDeleteSala.TabIndex = 44;
@@ -270,7 +270,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1018, 605);
+            ClientSize = new Size(1029, 613);
             Controls.Add(btnDeleteSala);
             Controls.Add(btnEditSala);
             Controls.Add(panel2);
@@ -279,6 +279,8 @@
             Controls.Add(panel1);
             Controls.Add(dgvSalas);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximumSize = new Size(1047, 660);
+            MinimumSize = new Size(1047, 660);
             Name = "FormGestionSalas";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Gestor de Reservas - Gestión de Salas";
