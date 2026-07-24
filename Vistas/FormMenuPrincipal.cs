@@ -30,7 +30,7 @@ namespace Tp_Integrador_Final.Vistas
 
             lblUserName.Text = GestorDeDatos.usuarioLogeado.Name;
             lblRol.Text = GestorDeDatos.usuarioLogeado.Rol.ToString();
-
+            
             ConfigurarDataGridView();
             CargarSalas();
             RefrescarDGV();
@@ -112,7 +112,7 @@ namespace Tp_Integrador_Final.Vistas
             colMotivo.Name = "Motivo";
             colMotivo.DataPropertyName = "Motivo";
             colMotivo.HeaderText = "Motivo";
-            colMotivo.FillWeight = 25;
+            colMotivo.FillWeight = 10;
             dgvReservas.Columns.Add(colMotivo);
 
             DataGridViewTextBoxColumn colEstado = new DataGridViewTextBoxColumn();
@@ -195,8 +195,8 @@ namespace Tp_Integrador_Final.Vistas
                 SalaDeReuniones sala = (SalaDeReuniones)cbSala.SelectedItem;
                 string motivo = tbMotivo.Text.Trim();
                 DateTime fecha = dtpInitDate.Value.Date;
-                TimeSpan horaInicio = dtpInitDate.Value.TimeOfDay;
-                TimeSpan horaFin = dtpEndDate.Value.TimeOfDay;
+                TimeSpan horaInicio = new TimeSpan(dtpInitDate.Value.Hour, dtpInitDate.Value.Minute, 0);
+                TimeSpan horaFin = new TimeSpan(dtpEndDate.Value.Hour, dtpEndDate.Value.Minute, 0);
 
                 if (horaInicio >= horaFin)
                 {
