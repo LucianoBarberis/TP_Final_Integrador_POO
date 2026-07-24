@@ -70,6 +70,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { menuAdministradorToolStripMenuItem, gerenteToolStripMenuItem, cerrarSesiónToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
+            menuStrip1.ShowItemToolTips = true;
             menuStrip1.Size = new Size(1029, 28);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
@@ -128,7 +129,7 @@
             cerrarSesiónToolStripMenuItem.Name = "cerrarSesiónToolStripMenuItem";
             cerrarSesiónToolStripMenuItem.Size = new Size(110, 24);
             cerrarSesiónToolStripMenuItem.Text = "Cerrar Sesión";
-            cerrarSesiónToolStripMenuItem.ToolTipText = "Doble Click";
+            cerrarSesiónToolStripMenuItem.ToolTipText = "Doble click para cerrar sesión";
             cerrarSesiónToolStripMenuItem.DoubleClick += cerrarSesiónToolStripMenuItem_DoubleClick;
             // 
             // btnNewReserva
